@@ -4,11 +4,9 @@ import { JsonDeconstructed } from "./JsonDeconstructed";
 import chai from 'chai'
 import { JsonDeconstructedService } from "./Services/JsonDeconstructedService";
 
+const print = (json) => deconstruct(json);
+const meta = (json) => PrintMeta(json);
 const assert = {
-    Print: (json: string) => deconstruct(json),
-    PrintMeta: (json: string) => PrintMeta(json),
-
-
     KeyContainsData: (json: string, key: string) => KeyContainsData(json, key),
     KeyWithAncestorContainsData: (json: string, key: string, ancestor: string) => KeyWithAncestorContainsData(json, key, ancestor),
     KeyWithAncestorExists: (json: string, key: string, ancestor: string) => KeyWithAncestorExists(json, key, ancestor),
@@ -385,8 +383,10 @@ const PrintMeta = function (json: string) {
 
 
 export default {
+    print,
     assert,
     get,
     assertObject,
-    getObject
+    getObject,
+    meta
 }

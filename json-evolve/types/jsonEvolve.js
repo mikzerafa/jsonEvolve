@@ -8,9 +8,9 @@ const Entity_1 = require("./Entity");
 const JsonDeconstructed_1 = require("./JsonDeconstructed");
 const chai_1 = __importDefault(require("chai"));
 const JsonDeconstructedService_1 = require("./Services/JsonDeconstructedService");
+const print = (json) => deconstruct(json);
+const Meta = (json) => PrintMeta(json);
 const assert = {
-    Print: (json) => deconstruct(json),
-    PrintMeta: (json) => PrintMeta(json),
     KeyContainsData: (json, key) => KeyContainsData(json, key),
     KeyWithAncestorContainsData: (json, key, ancestor) => KeyWithAncestorContainsData(json, key, ancestor),
     KeyWithAncestorExists: (json, key, ancestor) => KeyWithAncestorExists(json, key, ancestor),
