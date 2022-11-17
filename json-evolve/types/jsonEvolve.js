@@ -9,7 +9,7 @@ const JsonDeconstructed_1 = require("./JsonDeconstructed");
 const chai_1 = __importDefault(require("chai"));
 const JsonDeconstructedService_1 = require("./Services/JsonDeconstructedService");
 const print = (json) => deconstruct(json);
-const Meta = (json) => PrintMeta(json);
+const meta = (json) => PrintMeta(json);
 const assert = {
     KeyContainsData: (json, key) => KeyContainsData(json, key),
     KeyWithAncestorContainsData: (json, key, ancestor) => KeyWithAncestorContainsData(json, key, ancestor),
@@ -312,9 +312,11 @@ const PrintMeta = function (json) {
     JsonDeconstructedService_1.JsonDeconstructedService.printMeta(jd.entities);
 };
 exports.default = {
+    print,
     assert,
     get,
     assertObject,
-    getObject
+    getObject,
+    meta
 };
 //# sourceMappingURL=jsonEvolve.js.map

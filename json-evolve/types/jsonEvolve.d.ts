@@ -1,7 +1,6 @@
 declare const _default: {
+    print: (json: any) => void;
     assert: {
-        Print: (json: string) => void;
-        PrintMeta: (json: string) => void;
         KeyContainsData: (json: string, key: string) => void;
         KeyWithAncestorContainsData: (json: string, key: string, ancestor: string) => void;
         KeyWithAncestorExists: (json: string, key: string, ancestor: string) => void;
@@ -65,6 +64,7 @@ declare const _default: {
         keyAtIndex: (json: object, index: number) => string;
         keys: (json: object) => string[];
     };
+    meta: (json: any) => void;
 };
 export default _default;
 //# sourceMappingURL=jsonEvolve.d.ts.map
