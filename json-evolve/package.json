@@ -1,6 +1,6 @@
 {
   "name": "json-evolve",
-  "version": "13.3.0",
+  "version": "14.0.0",
   "description": "Guts Backend Tests",
   "main": "index.js",
   "types": "index.d.ts",
@@ -26,6 +26,7 @@
     "chai-graphql": "^4.0.0",
     "dotenv": "^16.0.1",
     "rimraf": "^3.0.2",
+    "supertest": "^6.3.1",
     "ts-node": "^10.9.1",
     "ts-node-register": "^1.0.0",
     "typescript": "^4.8.4"

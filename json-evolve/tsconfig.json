@@ -13,11 +13,10 @@
       "esnext"
     ],
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true
   },
   "exclude": [
     "node_modules/*",
