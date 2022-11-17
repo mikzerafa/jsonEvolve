@@ -1,6 +1,6 @@
 {
-  "name": "@types/json-evolve",
-  "version": "12.6.0",
+  "name": "json-evolve",
+  "version": "13.0.0",
   "description": "Guts Backend Tests",
   "main": "index.js",
   "types": "index.d.ts",
