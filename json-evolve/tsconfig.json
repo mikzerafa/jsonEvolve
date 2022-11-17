@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "es2016",
+    "strictFunctionTypes": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "types",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules/*",
+    "**/node_modules/*",
+    "build/**/*",
+    "tsconfig.json",
+    "types/**/*"
+  ],
+  "include": [
+    "lib/*.ts",
+    "lib/**/*.ts",
+    "types/**/*"
+  ]
+}
