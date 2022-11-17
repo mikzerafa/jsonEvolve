@@ -12,9 +12,9 @@
       "dom.iterable",
       "esnext"
     ],
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
   },
