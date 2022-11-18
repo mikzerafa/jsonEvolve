@@ -1,12 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
 require("chai");
-const jsonEvolve_1 = __importDefault(require("./jsonEvolve"));
-const mock_1 = __importDefault(require("./mock"));
 describe('test', () => {
     it('test1', () => {
         //je.assert.Print(randomJson.randomJSON)
@@ -22,7 +17,7 @@ describe('test', () => {
         //je.assert.Print(randomJson.tempJSON);
         //print.printArray(je.get.keys(randomJson.tempJson));
         //print.printArray(je.get.keys(randomJson.tempJson))
-        jsonEvolve_1.default.assert.KeyContainsData(mock_1.default.tempJson, "ctas");
+        //je.assert.KeyContainsData(randomJson.tempJson, "ctas");
         //console.log('Second key contains data: ' + je.assert.keyContainsData(randomJson.randomJSON, "address"))
         // let map = new ArrayEvolve();
         // let found = 0;

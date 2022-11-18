@@ -13,8 +13,8 @@
       "esnext"
     ],
     "skipLibCheck": false,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
   },
