@@ -11,7 +11,7 @@ the following characters: "{},[] are special key characters
 
 
 2) add import statement:<br />
-`import je from 'json-evolve/build/jsonEvolve';`
+`import je from 'json-evolve/types/jsonEvolve.js';`
 
 3) create an assertion or Get a value or Key:<br />
 

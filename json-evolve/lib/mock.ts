@@ -482,7 +482,7 @@ const tempJson = JSON.stringify(
 )
 
 
-export default {
+export {
     randomJSON,
     randomJSON2,
     randomJSON4,
