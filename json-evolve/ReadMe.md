@@ -10,8 +10,11 @@ the following characters: "{},[] are special key characters
 1) run `npm i json-evolve` in terminal
 
 
-2) add import statement:<br />
-`import je from 'json-evolve/types/jsonEvolve.js';`
+2) add require:<br />
+`const je = require('json-evolve/types/jsonEvolve.js').default;`
+
+Note: <br />
+you may need to change package.json "type" to commonJs to use require <br />
 
 3) create an assertion or Get a value or Key:<br />
 

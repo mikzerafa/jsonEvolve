@@ -382,7 +382,7 @@ const PrintMeta = function (json: string) {
 
 
 
-export {
+export default {
     print,
     assert,
     get,

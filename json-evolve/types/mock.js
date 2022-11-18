@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tempJson = exports.randomJSON9 = exports.randomJSON8 = exports.randomJSON7 = exports.randomJSON6 = exports.randomJSON5 = exports.randomJSON4 = exports.randomJSON2 = exports.randomJSON = void 0;
 const randomJSON = `{
     {
         "name": "Muhammad Ishaq",
@@ -11,7 +10,6 @@ const randomJSON = `{
             { "type": "personal", "number": "116263747" }
         ]
     }`;
-exports.randomJSON = randomJSON;
 const randomJSON2 = `{
 	"id": "0001",
 	"type": "donut",
@@ -38,7 +36,6 @@ const randomJSON2 = `{
 			{ "id": "5004", "type": "Maple" }
 		]
 }`;
-exports.randomJSON2 = randomJSON2;
 const randomJSON4 = `{
     "ancestor":{
         "menu": {
@@ -74,20 +71,17 @@ const randomJSON4 = `{
         }
     }
 }`;
-exports.randomJSON4 = randomJSON4;
 const randomJSON5 = `{
     "items": [
         "first", "second", "third", "forth"
     ]
 }
 `;
-exports.randomJSON5 = randomJSON5;
 const randomJSON6 = {
     "items": [
         1, 2, 3, 4
     ]
 };
-exports.randomJSON6 = randomJSON6;
 const randomJSON7 = `{
         "siteInfo": {
 	"name": "blogger",
@@ -97,7 +91,6 @@ const randomJSON7 = `{
 	]
 }}
 `;
-exports.randomJSON7 = randomJSON7;
 const randomJSON8 = `{
     "problems": [{
         "Diabetes":[{
@@ -136,7 +129,6 @@ const randomJSON8 = `{
         "Asthma": [{}]
     }]}
 `;
-exports.randomJSON8 = randomJSON8;
 const randomJSON9 = `{
     "data": [
         {
@@ -166,7 +158,6 @@ const randomJSON9 = `{
     "success": true 
 }
 `;
-exports.randomJSON9 = randomJSON9;
 const tempJson = JSON.stringify({
     "success": true,
     "data": {
@@ -472,5 +463,15 @@ const tempJson = JSON.stringify({
         ]
     }
 });
-exports.tempJson = tempJson;
+exports.default = {
+    randomJSON,
+    randomJSON2,
+    randomJSON4,
+    randomJSON5,
+    randomJSON6,
+    randomJSON7,
+    randomJSON8,
+    randomJSON9,
+    tempJson
+};
 //# sourceMappingURL=mock.js.map

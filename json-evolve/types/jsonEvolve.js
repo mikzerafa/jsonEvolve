@@ -3,16 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.meta = exports.getObject = exports.assertObject = exports.get = exports.assert = exports.print = void 0;
 const JsonParser_1 = require("./JsonParser");
 const Entity_1 = require("./Entity");
 const JsonDeconstructed_1 = require("./JsonDeconstructed");
 const chai_1 = __importDefault(require("chai"));
 const JsonDeconstructedService_1 = require("./Services/JsonDeconstructedService");
 const print = (json) => deconstruct(json);
-exports.print = print;
 const meta = (json) => PrintMeta(json);
-exports.meta = meta;
 const assert = {
     KeyContainsData: (json, key) => KeyContainsData(json, key),
     KeyWithAncestorContainsData: (json, key, ancestor) => KeyWithAncestorContainsData(json, key, ancestor),
@@ -33,7 +30,6 @@ const assert = {
     SubsetOfArrayAtIndexWithParentIndexEquals: (json, key, parentIndex, index, contains) => SubsetAtIndexWithParentIndexEquals(json, key, parentIndex, index, contains),
     SubsetOfArrayAtIndexWithParentIndexContains: (json, key, parentIndex, index, contains) => SubsetAtIndexWithParentIndexContains(json, key, parentIndex, index, contains)
 };
-exports.assert = assert;
 const assertObject = {
     Print: (json) => deconstruct(JSON.stringify(json)),
     PrintMeta: (json) => PrintMeta(JSON.stringify(json)),
@@ -56,7 +52,6 @@ const assertObject = {
     SubsetOfArrayAtIndexWithParentIndexEquals: (json, key, parentIndex, index, contains) => SubsetAtIndexWithParentIndexEquals(JSON.stringify(json), key, parentIndex, index, contains),
     SubsetOfArrayAtIndexWithParentIndexContains: (json, key, parentIndex, index, contains) => SubsetAtIndexWithParentIndexContains(JSON.stringify(json), key, parentIndex, index, contains)
 };
-exports.assertObject = assertObject;
 const get = {
     value: (json, key) => getValue(json, key),
     valueWithParent: (json, key, parentKey) => getValueWithParent(json, key, parentKey),
@@ -68,7 +63,6 @@ const get = {
     keyAtIndex: (json, index) => getKeyAtIndex(json, index),
     keys: (json) => getKeys(json)
 };
-exports.get = get;
 const getObject = {
     value: (json, key) => getValue(JSON.stringify(json), key),
     valueWithParent: (json, key, parentKey) => getValueWithParent(JSON.stringify(json), key, parentKey),
@@ -80,7 +74,6 @@ const getObject = {
     keyAtIndex: (json, index) => getKeyAtIndex(JSON.stringify(json), index),
     keys: (json) => getKeys(JSON.stringify(json))
 };
-exports.getObject = getObject;
 const KeyExists = function (json, key) {
     const jp = new JsonParser_1.JsonParser();
     jp.ParseLayer(json, 0);
@@ -317,5 +310,13 @@ const PrintMeta = function (json) {
     jp.ParseLayer(json, 0);
     const jd = new JsonDeconstructed_1.JsonDeconstructed(jp.GetEntities());
     JsonDeconstructedService_1.JsonDeconstructedService.printMeta(jd.entities);
+};
+exports.default = {
+    print,
+    assert,
+    get,
+    assertObject,
+    getObject,
+    meta
 };
 //# sourceMappingURL=jsonEvolve.js.map
