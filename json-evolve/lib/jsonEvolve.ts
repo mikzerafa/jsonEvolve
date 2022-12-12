@@ -3,10 +3,14 @@ import { Entity } from './Entity';
 import { JsonDeconstructed } from "./JsonDeconstructed";
 import chai from 'chai'
 import { JsonDeconstructedService } from "./Services/JsonDeconstructedService";
+import { print } from "./print";
+import { Console } from "console";
 
-const print = (json) => deconstruct(json);
-const meta = (json) => PrintMeta(json);
 const assert = {
+    Print: (json: string) => deconstruct(json),
+    PrintMeta: (json: string) => PrintMeta(json),
+
+
     KeyContainsData: (json: string, key: string) => KeyContainsData(json, key),
     KeyWithAncestorContainsData: (json: string, key: string, ancestor: string) => KeyWithAncestorContainsData(json, key, ancestor),
     KeyWithAncestorExists: (json: string, key: string, ancestor: string) => KeyWithAncestorExists(json, key, ancestor),
@@ -42,6 +46,8 @@ const assertObject = {
     KeyExists: (json: object, key: string) => KeyExists(JSON.stringify(json), key),
     KeyWithAncestorContainsData: (json: object, key: string, ancestor: string) => KeyWithAncestorContainsData(JSON.stringify(json), key, ancestor),
     KeyWithAncestorExists: (json: object, key: string, ancestor: string) => KeyWithAncestorExists(JSON.stringify(json), key, ancestor),
+    KeyWithAncestorContainsDataAtIndex: (json: object, key: string, ancestor: string, index: number) => KeyWithAncestorContainsDataAtIndex(JSON.stringify(json), key, ancestor, index),
+    keyWithAncestorExistsAtIndex: (json: object, key: string, ancestor: string, index: number) => KeyWithAncestorExistsAtIndex(JSON.stringify(json), key, ancestor, index),
 
     SubsetEquals: (json: object, key: string, contains: string) => SubsetEquals(JSON.stringify(json), key, contains),
     SubsetContains: (json: object, key: string, contains: string) => SubsetContains(JSON.stringify(json), key, contains),
@@ -101,9 +107,14 @@ const KeyExists = function (json: string, key: string) {
 
 const KeyContainsData = function (json: string, key: string) {
     const jp = new JsonParser();
+    //console.log('JSON Length: ' + json.length);
     jp.ParseLayer(json, 0);
+    //console.log('am i even parsing it right')
+    //console.log('jp.entities: ' + jp.GetEntities().size())
     const jd = new JsonDeconstructed(jp.GetEntities());
     const entity: Entity = JsonDeconstructedService.GetEntityWithKey(jd.entities, key) || new Entity("", "", 0);
+
+    //console.log('entity with key (in key contains data)' + entity.key);
     let arrayAssertion = false;
     try {
         if (entity.values.size > 1) {
@@ -134,7 +145,7 @@ const KeyWithAncestorContainsData = function (json: string, key: string, ancesto
     try {
         if (entity.values.size > 0) {
             isArray = true;
-            if (entity.values.size == 0) {
+            if (entity.values.size <= 1) {
                 if (entity.values.get(0).length == 0) {
                     arrayEmpty = true;
                 }
@@ -143,18 +154,66 @@ const KeyWithAncestorContainsData = function (json: string, key: string, ancesto
     }
     catch {
         //Not an Array
-        try {
-            chai.assert.isNotEmpty(entity.value, "Value is Empty")
-        }
-        catch {
-            chai.assert.equal(true, false, "entity value is undefined for key: " + key);
-        }
+        // try {
+        //console.log(entity.key)
+        chai.assert.notEqual(entity.value, "", "Value is Empty for key: " + key + "with ancestor " + ancestor)
+        chai.assert.isDefined(entity.value, "value is not defined for key " + key + "with ancestor" + ancestor)
+        // }
+        // catch {
+        //     chai.assert.equal(true, false, "entity value is undefined for key: " + key);
+        // }
 
 
     }
 
     if (isArray) {
-        chai.assert.equal(false, arrayEmpty, "Array is Empty")
+        chai.assert.equal(false, arrayEmpty, "Array is Empty for key " + key + " of ancestor " + ancestor)
+    }
+}
+
+const KeyWithAncestorExistsAtIndex = function (json: string, key: string, ancestor: string, index: number) {
+    const jp = new JsonParser();
+    jp.ParseLayer(json, 0);
+    const jd = new JsonDeconstructed(jp.GetEntities());
+    const entity: Entity = JsonDeconstructedService.GetEntityWithKeyOfAncestorAtIndex(jd.entities, key, ancestor, index)
+
+    chai.assert.isDefined(entity, "Key or Ancestor Key not found: " + key + "/" + ancestor + " [" + index + "]")
+}
+const KeyWithAncestorContainsDataAtIndex = function (json: string, key: string, ancestor: string, index: number) {
+    const jp = new JsonParser();
+    jp.ParseLayer(json, 0);
+    const jd = new JsonDeconstructed(jp.GetEntities());
+    const entity: Entity = JsonDeconstructedService.GetEntityWithKeyOfAncestorAtIndex(jd.entities, key, ancestor, index)
+
+    let isArray = false;
+    let arrayEmpty = false;
+
+    try {
+        if (entity.values.size > 0) {
+            isArray = true;
+            if (entity.values.size <= 1) {
+                if (entity.values.get(0).length == 0) {
+                    arrayEmpty = true;
+                }
+            }
+        }
+    }
+    catch {
+        //Not an Array
+        // try {
+        //console.log(entity.key)
+        chai.assert.notEqual(entity.value, "", "Value is Empty for key: " + key + "with ancestor " + ancestor)
+        chai.assert.isDefined(entity.value, "value is not defined for key " + key + "with ancestor" + ancestor)
+        // }
+        // catch {
+        //     chai.assert.equal(true, false, "entity value is undefined for key: " + key);
+        // }
+
+
+    }
+
+    if (isArray) {
+        chai.assert.equal(false, arrayEmpty, "Array is Empty for key " + key + " of ancestor " + ancestor)
     }
 }
 
@@ -243,6 +302,7 @@ const getKeys = function (json: string): string[] {
     const keyAmount: number = getKeyLength(json);
 
     for (let i = 0; i < keyAmount; i++) {
+        //console.log('Adding key ' + '[' + i + '/' + keyAmount + ']')
         output.push(getKeyAtIndex(json, i));
     }
 
@@ -383,10 +443,8 @@ const PrintMeta = function (json: string) {
 
 
 export default {
-    print,
     assert,
     get,
     assertObject,
-    getObject,
-    meta
+    getObject
 }

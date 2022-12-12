@@ -22,8 +22,10 @@ describe('test', () => {
         //je.assert.Print(randomJson.tempJSON);
         //print.printArray(je.get.keys(randomJson.tempJson));
 
-        //print.printArray(je.get.keys(randomJson.tempJson))
-        //je.assert.KeyContainsData(randomJson.tempJson, "ctas");
+        print.printArray(je.get.keys(randomJson.tempJson))
+        je.assert.KeyContainsData(randomJson.tempJson, "ctas");
+        console.log('Data: ' + je.get.values(randomJson.tempJson, "roles")?.get(0));
+        console.log('ctas: ' + je.get.value(randomJson.tempJson, "success"));
         //console.log('Second key contains data: ' + je.assert.keyContainsData(randomJson.randomJSON, "address"))
 
         // let map = new ArrayEvolve();

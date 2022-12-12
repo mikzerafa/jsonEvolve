@@ -37,11 +37,11 @@ export class JsonParser {
                 isArray = true;
                 key = parentEntity!.key;
                 arrayValues = sm.GetNextBetweenDynamic(content, '[', ']');
-                console.log('Array values: ' + arrayValues);
+                //console.log('Array values: ' + arrayValues);
                 if (arrayValues.includes(',')) {
                     // console.log('array values: ' + arrayValues);
                     values = sm.DynamicSplit(arrayValues, ',');
-                    console.log('array size: ' + values.size);
+                    // console.log('array size: ' + values.size);
                     //console.log('values size: ' + values.size);
 
                 }
@@ -128,6 +128,7 @@ export class JsonParser {
                     if (sm.LastCharIgnoringSpacesIs(value, "\"") && !sm.FirstCharIgnoringSpacesIs(value, "\"")) {
                         value = value.substring(0, value.lastIndexOf("\""));
                     }
+
                     entity = new Entity(key, value, level, parentEntity, parentIndex);
                     const hasKey = sm.hasKey(entity.value);
                     if (hasKey) {

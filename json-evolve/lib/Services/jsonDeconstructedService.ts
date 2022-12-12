@@ -14,10 +14,15 @@ export abstract class JsonDeconstructedService {
             if (en.key == key) {
                 output = en
             }
+            //console.log('en.key: ' + en.key);
             return output;
         }
 
         output = entities.foreach(fun)
+
+        // console.log('Output is defined ' + output != undefined)
+        // console.log('Looking for key: ' + key);
+        // console.log('ouput key: ' + output.key)
 
         return output;
     }
@@ -82,7 +87,32 @@ export abstract class JsonDeconstructedService {
         }
 
         output = entities.foreach(fun);
+        return output;
+    }
 
+    static GetEntityWithKeyOfAncestorAtIndex(entities: ArrayEvolve<number, Entity>, key: string, ancestorKey: string, index: number) {
+        let output: Entity | undefined;
+        let workingWithEntity: Entity;
+        let foundKey = false;
+
+        const fun = (en: Entity) => {
+            workingWithEntity = en;
+            if (workingWithEntity.key == key && workingWithEntity.parentIndex == index) {
+                do {
+                    if (workingWithEntity.parent != null) {
+                        workingWithEntity = workingWithEntity.parent;
+                        if (workingWithEntity.key == ancestorKey) {
+                            foundKey = true;
+                            output = en;
+                        }
+                    }
+                } while (workingWithEntity.parent != null && foundKey == false)
+            }
+
+            return output;
+        }
+
+        output = entities.foreach(fun);
         return output;
     }
 }

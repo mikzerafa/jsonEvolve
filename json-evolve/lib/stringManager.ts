@@ -215,8 +215,16 @@ export class StringManager {
                 closingIndex = text.indexOf("\"", text.indexOf("\"") + 1) - 1;
             }
 
-            output = text.substring(text.indexOf("\"") + 1, closingIndex + 1);
+            // if (text.includes('imageLogo')) {
+            //     console.log('image logo text: ' + text)
+            // }
+
+            output = text.substring(text.indexOf("\"") + 1, closingIndex);
             // console.log('returning output: ' + output);
+
+            // if (text.includes('imageLogo')) {
+            //     console.log('output value: ' + output)
+            // }
 
         }
         else {
@@ -247,8 +255,11 @@ export class StringManager {
     ContainsAnyOf(text: string, options: string[]) {
         let output = false;
         options.forEach(op => {
-            if (text.includes(op)) {
-                output = true;
+            if (text != null) {
+                let textInput = new String(text + "")
+                if (textInput.includes(op)) {
+                    output = true;
+                }
             }
         })
         return output;
